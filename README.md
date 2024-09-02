@@ -7,7 +7,7 @@ Tested successfully on Linux (Ubuntu 18.04) and Win10. Not sure for Mac.
 
 extractRadiomicsFeatures.py: Extract features from images within the corresponding masks. You can run the createFilesPathTable.py to get the .csv table recoding the filepaths of images and masks.
 
-tumorClassification_main.py: Main function to train and evaluate classifiers.
+tumorClassification_main.py: Main function to train and evaluate classifiers (to update).
 
 model_cv.py: Contains functions will be used by tumorClassification_main.py.
 
