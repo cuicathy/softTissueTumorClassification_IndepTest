@@ -411,7 +411,7 @@ def combine_two_class_all(classifier1, classifier2):
 
 
 def LASSO_Classifier_IndepTesting(save_dir, df_features, df_label, df_features_IndepTest,
-                                                    df_label_IndepTest, data_keys , outer_fold=1, inner_fold=8,
+                                                    df_label_IndepTest, data_keys , inner_fold=8,
                                                     reduceFeature_method='LASSO_ALL_ALPHAS', plot_name='',
                                                     feaReduce_flag=True):
     assert(df_features_IndepTest.shape[1] == len(data_keys))
@@ -582,19 +582,19 @@ def LASSO_Classifier_IndepTesting(save_dir, df_features, df_label, df_features_I
 
         print('**********Random Forest**************')
         plot_name1 = 'CV' + str(cv_i) + '_rf'
-        auc1, acc1 = Overall_Evaluation_(classifier_property1_1, data_keys, outer_fold, save_dir, plot_name=plot_name1)
+        auc1, acc1 = Overall_Evaluation_(classifier_property1_1, data_keys, save_dir, plot_name=plot_name1)
         print('**********Logistic Regression**************')
         plot_name2 = 'CV' + str(cv_i) + '_lr'
-        auc2, acc2 = Overall_Evaluation_(classifier_property1_2, data_keys, outer_fold, save_dir, plot_name=plot_name2)
+        auc2, acc2 = Overall_Evaluation_(classifier_property1_2, data_keys, save_dir, plot_name=plot_name2)
         print('**********Neural Network**************')
         plot_name3 = 'CV' + str(cv_i) + '_nn'
-        auc3, acc3 = Overall_Evaluation_(classifier_property1_3, data_keys, outer_fold, save_dir, plot_name=plot_name3)
+        auc3, acc3 = Overall_Evaluation_(classifier_property1_3, data_keys, save_dir, plot_name=plot_name3)
         print('**********xgboost**************')
         plot_name4 = 'CV' + str(cv_i) + '_xgboost'
-        auc4, acc4 = Overall_Evaluation_(classifier_property1_4, data_keys, outer_fold, save_dir, plot_name=plot_name4)
+        auc4, acc4 = Overall_Evaluation_(classifier_property1_4, data_keys, save_dir, plot_name=plot_name4)
         print('**********SVM**************')
         plot_name5 = 'CV' + str(cv_i) + '_svm'
-        auc5, acc5 = Overall_Evaluation_(classifier_property1_5, data_keys, outer_fold, save_dir, plot_name=plot_name5)
+        auc5, acc5 = Overall_Evaluation_(classifier_property1_5, data_keys, save_dir, plot_name=plot_name5)
 
 
         mean_auc_perCV_list1.append(auc1)
@@ -642,23 +642,23 @@ def LASSO_Classifier_IndepTesting(save_dir, df_features, df_label, df_features_I
     print('**********Random Forest**************')
     plot_name1 = 'CV' + '_all' + '_rf'
     Overall_Evaluation_crossCV(classifier_propertyall_1, outer_gt_cvs_1, outer_results_prob_cvs_1, data_keys,
-                               outer_fold, save_dir, plot_name=plot_name1)
+                               save_dir, plot_name=plot_name1)
     print('**********Logistic Regression**************')
     plot_name2 = 'CV' + '_all' + '_lr'
     Overall_Evaluation_crossCV(classifier_propertyall_2, outer_gt_cvs_2, outer_results_prob_cvs_2, data_keys,
-                               outer_fold, save_dir, plot_name=plot_name2)
+                               save_dir, plot_name=plot_name2)
     print('**********Neural Network**************')
     plot_name3 = 'CV' + '_all' + '_nn'
     Overall_Evaluation_crossCV(classifier_propertyall_3, outer_gt_cvs_3, outer_results_prob_cvs_3, data_keys,
-                               outer_fold, save_dir, plot_name=plot_name3)
+                               save_dir, plot_name=plot_name3)
     print('**********xgboost**************')
     plot_name4 = 'CV' + '_all' + '_xgboost'
     Overall_Evaluation_crossCV(classifier_propertyall_4, outer_gt_cvs_4, outer_results_prob_cvs_4, data_keys,
-                               outer_fold, save_dir, plot_name=plot_name4)
+                               save_dir, plot_name=plot_name4)
     print('**********SVM**************')
     plot_name5 = 'CV' + '_all' + '_svm'
     Overall_Evaluation_crossCV(classifier_propertyall_5, outer_gt_cvs_5, outer_results_prob_cvs_5, data_keys,
-                               outer_fold, save_dir, plot_name=plot_name5)
+                               save_dir, plot_name=plot_name5)
     print('----------ALL-AUC--------------')
     print('rf Average AUC (cv): %.3f (%.3f)' % (mean(mean_auc_perCV_list1), std(mean_auc_perCV_list1)))
     print('lr Average AUC (cv): %.3f (%.3f)' % (mean(mean_auc_perCV_list2), std(mean_auc_perCV_list2)))
